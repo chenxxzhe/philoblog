@@ -1,0 +1,25 @@
+---
+layout: default
+title: Philoz's Blog
+---
+{% for post in site.posts %}
+  {% assign currentdate = post.date | date: "%Y/%m" %}
+  {% if currentdate != date %}
+    {% unless forloop.first %}</ul><hr/>{% endunless %}
+    <h2 class="month-title">{{ currentdate }}</h2>
+    <ul class="month-posts">
+    {% assign date = currentdate %}
+  {% endif %}
+  <li>
+    <h4>
+      <a href="{{ site.baseurl }}{{ post.url }}">
+        <span>{{ post.title }}</span>
+        <time pubdate="{{post.date | date:'%Y-%m-%d'}}">{{post.date | date:'%m/%d'}}</time>
+      </a>
+    </h4>
+  </li>
+  {% if forloop.last %}</ul><hr/>{% endif %}
+{% endfor %}
+
+
+

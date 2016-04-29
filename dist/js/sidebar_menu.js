@@ -1,0 +1,1 @@
+window.onload=function(){var e=document.getElementById("sidebar"),n=document.getElementById("menu"),l=document.getElementById("mask");n.onclick=function(){e.className="slide-in",l.style.display="block"},l.onclick=function(){l.style.display="none",e.className=""}};

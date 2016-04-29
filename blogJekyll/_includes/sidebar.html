@@ -1,0 +1,33 @@
+<a id="menu" href="#_sidebar">menu</a>
+
+<aside id="sidebar">
+	<div class="wrapper">
+
+		<img class="portrait" src="{{site.baseurl}}/assets/chenzhe_bridge.png" alt="portrait">
+
+		<p>Hi, I'm Philo.</p>
+		<p>This is my blog built by jekyll</p>
+
+		<nav>
+			<a href="{{site.baseurl}}/index.html">Home</a>
+			<hr/>
+			{% for cat in site.categories %}
+				
+			<a href="{{site.baseurl}}/categories/{{cat[0]}}">{{cat[0]}}</a>
+			
+			<hr/>
+				
+			{% endfor %}
+
+			<!-- <a href="{{site.baseurl}}/about.html">About</a>
+			<hr/> -->
+		</nav>
+		{% include github_link.html %}
+		{% include jianshu_link.html %}
+	</div>
+	
+	
+
+</aside> 
+<div id="mask"></div>
+<script src="{{site.baseurl}}/js/sidebar_menu.js"></script>

@@ -1,0 +1,107 @@
+html, body { padding: 0; margin: 0; }
+html { 
+	font-family: "Microsoft YaHei";
+	font-size: 16px;
+}
+
+a:link{text-decoration: none; color: inherit;}
+a:hover{text-decoration: underline;}
+a:visited{color: inherit;}
+@media screen and (min-width: 48em) {
+	html { font-size: 20px; }
+}
+
+
+/*main*/
+main {
+	margin-left: 0.5em;
+	padding: 3em 5em;
+}
+
+main .wrapper{
+	
+}
+main ul {
+	list-style: none;
+	padding-left: 1em;
+}
+
+main ul a:hover{
+	text-decoration: none;
+	color: orange;
+	border-bottom: 2px solid orange;
+}
+
+main ul a span{
+	color: orange;
+}
+
+main time {
+	font-size: 0.6em;
+}
+
+/*sidebar*/
+#menu { position: absolute; top: 0.5em; left: 1.5em; }
+#menu:link { text-decoration: underline; }
+#menu:hover { color: orange; }
+
+aside {
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 14em;
+	margin-left: -13.5em;
+	transition: margin-left 0.3s;
+	color: #fff;
+	background: #222;
+	box-shadow: 5px 0 5px #888
+}
+
+aside .wrapper {
+	padding: 2em;
+	
+}
+
+aside img.portrait{
+	width: 100%;
+	border-radius: 5%;
+}
+
+aside .wrapper nav {
+	
+}
+
+@media screen and (min-width: 38em){
+	#menu {display: none;}
+	aside { margin-left: 0; }
+	main {margin-left: 15em;}
+}
+
+/*sidebar slide in animation*/
+#mask {
+	display: none;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	background: black;
+	opacity: 0.5;
+	z-index: 1000;
+}
+
+.slide-in {
+	margin-left: 0;
+	transition: margin-left 0.3s ease-in ; 
+	z-index: 1002;
+}
+
+
+
+/* post */
+.post-c-list {
+	margin-left: 1em;
+	font-size: 0.8em;
+	color: orange;
+}
