@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>jekyll usage</title>
+	<!-- <link rel="icon" type="image/png" href="/philoblog/dist/assets/favicon.png" /> -->
+	<link rel="stylesheet" type="text/css" href="/philoblog/dist/css/default.css">
+	
+</head>
+
+<body>
+	<main class="container">
+		<div class="wrapper">
+			
+
+	
+
+
+<article class="post">
+	<h1 class="post-title">jekyll usage</h1>
+	<p>
+		<time pubdate="2016-05-02T00:00:00+08:00">
+			2016/05/02
+		</time>
+		<span class="post-c-list">
+			
+			<a href="/philoblog/dist/categories/jekyll/">jekyll</a>
+		</span>
+	</p>
+	<hr />
+
+	<p>##使用jekyll在github上搭建个人博客</p>
+<hr />
+
+<p>##github pages
+github page是github提供的一种可以显示自己git库上网页的服务。</p>
+
+<hr />
+
+<p>##如何使用githbu pages
+有两种方法:
+第一种，在github上创建新的仓库，命名为<code class="highlighter-rouge">username.github.io</code>，username就是自己注册的用户名，<code class="highlighter-rouge">master</code>分支根目录上创建index.html。打开网页<code class="highlighter-rouge">username.github.io</code>，就可以看见新建的index.html。</p>
+
+<p>第二种，没有命名限制，可以基于现有的库来创建，当然也可以开新的仓库 。新建orphan分支<code class="highlighter-rouge">git checkout --orphan gh-pages</code>，分支名一定要是<code class="highlighter-rouge">gh-pages</code>。然后在<code class="highlighter-rouge">username.github.io/reposname</code>上就可以看见根目录上的index.html，reposname就是库名。</p>
+
+<hr />
+
+<p>##什么是jekyll
+&gt;Jekyll 是一个简单的博客形态的静态站点生产机器。它有一个模版目录，其中包含原始文本格式的文档，通过 Markdown （或者 Textile） 以及 Liquid 转化成一个完整的可发布的静态网站，你可以发布在任何你喜爱的服务器上。Jekyll 也可以运行在 GitHub Page 上，也就是说，你可以使用 GitHub 的服务来搭建你的项目页面、博客或者网站，而且是<strong>完全免费</strong>的。</p>
+
+<p>以下是内容都是介绍jekyll的简单用法，详细请看<a href="https://jekyllrb.com/">官方文档</a></p>
+
+<hr />
+
+<p>##使用jekyll在github上搭建个人博客
+github pages 支持jekyll，因此可以直接将源码上传到github pages上，会自动解释并生成网页。</p>
+
+<p><strong>1.目录结构</strong>
+<img src="/philoblog/dist/assets/mulu.png" alt="mulu.png" /></p>
+
+<p><code class="highlighter-rouge">_name</code> 的是jekyll的默认文件/文件夹，可通过liquid读取
+<code class="highlighter-rouge">_data/</code>  里面的文件可通过<code class="highlighter-rouge">site.data.xx</code>来读取
+<code class="highlighter-rouge">_includes/</code> 里面的文件可被引用到模板上
+<code class="highlighter-rouge">_layouts/</code> 模板存放的地方
+<code class="highlighter-rouge">_posts/</code>存放博文，可通过<code class="highlighter-rouge">page.xx</code>来读取相应数据
+<code class="highlighter-rouge">_site/</code>运行生成的文件存放在这里，自动生成
+<code class="highlighter-rouge">_config.yml</code>配置文件，里面的属性可通过<code class="highlighter-rouge">site.xx</code>来读取
+<code class="highlighter-rouge">index.html</code>主页
+<code class="highlighter-rouge">404.html</code>一定要是<code class="highlighter-rouge">404.html</code>才能作为404页面</p>
+
+<p>liquid的语法可参见该文: <a href="http://blog.csdn.net/dont27/article/details/38097581">liquid用法笔记</a></p>
+
+<p><strong>2.配置文件_config.yml</strong>
+有很多配置，详细参见官方文档，简单的配置如下</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>encoding: utf-8 //网页的编码
+baseurl: /reposname //用于site.baseurl, 适应github pages的路径, 不过好像不用这个，直接用相对路径可以。
+permalink: pretty  //生成路径的方法，不过好像不设置也没差别
+</code></pre>
+</div>
+
+<p><strong>3.模板_layouts</strong>
+_layouts/下新建default.html</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+	<span class="nt">&lt;title&gt;</span>jekyll usage<span class="nt">&lt;/title&gt;</span>
+       <span class="c">&lt;!--  调用page.title变量 --&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+
+<span class="nt">&lt;body&gt;</span>
+	<span class="nt">&lt;main</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"wrapper"</span><span class="nt">&gt;</span>
+			{<span class="ni">&amp;#123;</span> content <span class="ni">&amp;#125;</span>}
+ <span class="c">&lt;!--  调用该模板的文件的主内容全部显示在content里 --&gt;</span>
+		<span class="nt">&lt;/div&gt;</span>
+	<span class="nt">&lt;/main&gt;</span>
+
+	{<span class="ni">&amp;#37;</span> include sidebar.html <span class="ni">&amp;#37;</span>}
+<span class="c">&lt;!--  引用_include/sidebar.html --&gt;</span>
+
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre>
+</div>
+
+<p><strong>4.index.html</strong>
+给index.html添加以下内容</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>---
+layout: default
+title: Hello World
+---
+<span class="nt">&lt;p&gt;</span>hello world<span class="nt">&lt;/p&gt;</span>
+<span class="c">&lt;!-- 
+虚线中间layout 表示要调用的模板，其他变量可通过page.xxx来引用。
+虚线下面的内容为主内容，显示在content中。
+--&gt;</span>
+</code></pre>
+</div>
+
+<p>现在打开github page上的网页(<code class="highlighter-rouge">username.github.io</code> 或者 <code class="highlighter-rouge">username.github.io/reposname</code> 视乎你用哪种方法创建github pages)应该就能看见hello world。</p>
+
+<p><strong>5.post博文</strong>
+在<code class="highlighter-rouge">_posts</code>文件夹里创建文件<code class="highlighter-rouge">2016-05-01-this-is-post.html</code>
+注意post的命名格式是<code class="highlighter-rouge">yyyy-mm-dd-title.html/md</code>，之后生成链接可以用<code class="highlighter-rouge">post.url</code>来指向博文</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>//2016-05-01-this-is-post.html
+---
+layout: default
+title: this is post 1
+---
+<span class="nt">&lt;p&gt;</span>this is post one<span class="nt">&lt;/p&gt;</span>
+</code></pre>
+</div>
+
+<p>修改index.html，加入新博文的链接</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>//index.html
+---
+layout: default
+title: Hello World
+---
+
+<span class="nt">&lt;h1&gt;</span>hello world<span class="nt">&lt;/h1&gt;</span>
+
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/philoblog/dist/jekyll/2016/05/02/jekyll-usage/"</span><span class="nt">&gt;</span> jekyll usage<span class="nt">&lt;/a&gt;</span>
+  注意site.baseurl 与 post.url中间没有 "/" ,因为post.url自带了"/"
+  
+
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/philoblog/dist/jekyll/2016/04/29/mdtest/"</span><span class="nt">&gt;</span> markdown example<span class="nt">&lt;/a&gt;</span>
+  注意site.baseurl 与 post.url中间没有 "/" ,因为post.url自带了"/"
+  
+
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/philoblog/dist/test2/2016/04/25/test2/"</span><span class="nt">&gt;</span> test2<span class="nt">&lt;/a&gt;</span>
+  注意site.baseurl 与 post.url中间没有 "/" ,因为post.url自带了"/"
+  
+
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/philoblog/dist/test1/2016/04/25/test/"</span><span class="nt">&gt;</span> test1<span class="nt">&lt;/a&gt;</span>
+  注意site.baseurl 与 post.url中间没有 "/" ,因为post.url自带了"/"
+  
+
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/philoblog/dist/2015/04/25/pastday/"</span><span class="nt">&gt;</span> A year ago<span class="nt">&lt;/a&gt;</span>
+  注意site.baseurl 与 post.url中间没有 "/" ,因为post.url自带了"/"
+  
+
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/philoblog/dist/test2/2014/04/26/longtimeago/"</span><span class="nt">&gt;</span> Long time ago<span class="nt">&lt;/a&gt;</span>
+  注意site.baseurl 与 post.url中间没有 "/" ,因为post.url自带了"/"
+  
+
+
+</code></pre>
+</div>
+
+<hr />
+
+<p>##结束
+以上就是jekyll的简单用法，大家可以看看我创建的<a href="https://chenxxzhe.github.io/philoblog/dist">博客</a>，很简单的，一看就懂。
+<a href="https://github.com/chenxxzhe/philoblog/tree/gh-pages/blogJekyll">源码点这里</a></p>
+
+<p>也可以看看别人的<a href="http://jekyllthemes.org/">jekyll模板</a></p>
+
+
+</article>
+		</div>
+	</main>
+
+	<a id="menu" href="#_sidebar">menu</a>
+
+<aside id="sidebar">
+	<div class="wrapper">
+
+		<img class="portrait" src="/philoblog/dist/assets/chenzhe_bridge.png" alt="portrait">
+
+		<p>Hi, I'm Philo.</p>
+		<p>This is my blog built by jekyll</p>
+
+		<nav>
+			<a href="/philoblog/dist/index.html">Home</a>
+			<hr/>
+			
+				
+			<a href="/philoblog/dist/categories/test2">test2</a>
+			
+			<hr/>
+				
+			
+				
+			<a href="/philoblog/dist/categories/test1">test1</a>
+			
+			<hr/>
+				
+			
+				
+			<a href="/philoblog/dist/categories/jekyll">jekyll</a>
+			
+			<hr/>
+				
+			
+
+			<!-- <a href="/philoblog/dist/about.html">About</a>
+			<hr/> -->
+		</nav>
+		<a href="https://github.com/chenxxzhe"><img src="/philoblog/dist/assets/github.png"></a>
+		<a href="http://www.jianshu.com/users/5e199866bf6f/timeline"><img src="/philoblog/dist/assets/jianshu.ico"></a>
+	</div>
+	
+	
+
+</aside> 
+<div id="mask"></div>
+<script src="/philoblog/dist/js/sidebar_menu.js"></script>
+
+</body>
+</html>
