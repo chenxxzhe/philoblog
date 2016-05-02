@@ -1,35 +1,26 @@
 ---
 layout: post
-title: jekyll usage
+title: 使用jekyll在github上搭建个人博客
 category: jekyll
 ---
-<style type="text/css">
-	code.highlighter-rouge {
-		background: #f0f0f0
-	}
-</style>
- 	
-	
-##使用jekyll在github上搭建个人博客
-<hr />
 
+## github pages
 
-##github pages
 github page是github提供的一种可以显示自己git库上网页的服务。
 
 <hr />
 
-##如何使用githbu pages
+## 如何使用githbu pages
 
 有两种方法:
 
 第一种，在github上创建新的仓库，命名为`username.github.io`，username就是自己注册的用户名，`master`分支根目录上创建index.html。打开网页`username.github.io`，就可以看见新建的index.html。
-
+  
 第二种，没有命名限制，可以基于现有的库来创建，当然也可以开新的仓库 。新建orphan分支`git checkout --orphan gh-pages`，分支名一定要是`gh-pages`。然后在`username.github.io/reposname`上就可以看见根目录上的index.html，reposname就是库名。
 
 <hr />
 
-##什么是jekyll
+## 什么是jekyll
 
 >Jekyll 是一个简单的博客形态的静态站点生产机器。它有一个模版目录，其中包含原始文本格式的文档，通过 Markdown （或者 Textile） 以及 Liquid 转化成一个完整的可发布的静态网站，你可以发布在任何你喜爱的服务器上。Jekyll 也可以运行在 GitHub Page 上，也就是说，你可以使用 GitHub 的服务来搭建你的项目页面、博客或者网站，而且是**完全免费**的。
 
@@ -37,7 +28,7 @@ github page是github提供的一种可以显示自己git库上网页的服务。
 
 <hr />
 
-##使用jekyll在github上搭建个人博客
+## 使用jekyll在github上搭建个人博客
 
 github pages 支持jekyll，因此可以直接将源码上传到github pages上，会自动解释并生成网页。
 
@@ -71,7 +62,7 @@ permalink: pretty  //生成路径的方法，不过好像不设置也没差别
 **3.模板_layouts**
 
 _layouts/下新建default.html
-
+{% raw %}
 ```html
 <!DOCTYPE html>
 <html >
@@ -83,7 +74,7 @@ _layouts/下新建default.html
 <body>
 	<main class="container">
 		<div class="wrapper">
-			{&#123; content &#125;}
+			{{ content }}
  <!--  调用该模板的文件的主内容全部显示在content里 -->
 		</div>
 	</main>
@@ -94,10 +85,12 @@ _layouts/下新建default.html
 </body>
 </html>
 ```
+{% endraw %}
 
 **4.index.html**
 
 给index.html添加以下内容 
+
 
 ```html
 ---
@@ -119,6 +112,7 @@ title: Hello World
 
 注意post的命名格式是`yyyy-mm-dd-title.html/md`，之后生成链接可以用`post.url`来指向博文
 
+
 ```html
 //2016-05-01-this-is-post.html
 ---
@@ -130,7 +124,7 @@ title: this is post 1
 
 修改index.html，加入新博文的链接
 
-
+{% raw %}
 ```html
 //index.html
 ---
@@ -146,10 +140,24 @@ title: Hello World
 {% endfor %}
 
 ```
+{% endraw %}
+
+**6.语法高亮**
+
+想要引用的代码块语法高亮，要引用外部的资源
+
+```html
+<link rel="stylesheet" href="http://yandex.st/highlightjs/7.1/styles/default.min.css">
+<script src="http://yandex.st/highlightjs/7.1/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+```
+
+这样就有语法高亮了，其实也可以根据生成后的DOM元素自己加CSS.
+
+例如`code { background: #f0f0f0 ;}`
 
 <hr />
-
-##结束
+## 结束
 
 以上就是jekyll的简单用法，大家可以看看我创建的[博客](https://chenxxzhe.github.io/philoblog/dist)，很简单的，一看就懂。
 

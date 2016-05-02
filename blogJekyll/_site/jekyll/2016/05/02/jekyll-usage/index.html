@@ -3,13 +3,14 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>jekyll usage</title>
+	<title>使用jekyll在github上搭建个人博客</title>
 	<!-- <link rel="icon" type="image/png" href="/philoblog/dist/assets/favicon.png" /> -->
 	<link rel="stylesheet" type="text/css" href="/philoblog/dist/css/default.css">
 
 	<link rel="stylesheet" href="http://yandex.st/highlightjs/7.1/styles/default.min.css">
 	<script src="http://yandex.st/highlightjs/7.1/highlight.min.js"></script>
 	<script>hljs.initHighlightingOnLoad();</script>
+	<!-- 下面这段封装起来 -->
 	<style type="text/css">
 	code.highlighter-rouge {
 		background: #f0f0f0
@@ -26,7 +27,7 @@
 
 
 <article class="post">
-	<h1 class="post-title">jekyll usage</h1>
+	<h1 class="post-title">使用jekyll在github上搭建个人博客</h1>
 	<p>
 		<time pubdate="2016-05-02T00:00:00+08:00">
 			2016/05/02
@@ -38,21 +39,13 @@
 	</p>
 	<hr />
 
-	<style type="text/css">
-	code.highlighter-rouge {
-		background: #f0f0f0
-	}
-</style>
+	<h2 id="github-pages">github pages</h2>
 
-<p>##使用jekyll在github上搭建个人博客</p>
-<hr />
-
-<p>##github pages
-github page是github提供的一种可以显示自己git库上网页的服务。</p>
+<p>github page是github提供的一种可以显示自己git库上网页的服务。</p>
 
 <hr />
 
-<p>##如何使用githbu pages</p>
+<h2 id="githbu-pages">如何使用githbu pages</h2>
 
 <p>有两种方法:</p>
 
@@ -62,7 +55,7 @@ github page是github提供的一种可以显示自己git库上网页的服务。
 
 <hr />
 
-<p>##什么是jekyll</p>
+<h2 id="jekyll">什么是jekyll</h2>
 
 <blockquote>
   <p>Jekyll 是一个简单的博客形态的静态站点生产机器。它有一个模版目录，其中包含原始文本格式的文档，通过 Markdown （或者 Textile） 以及 Liquid 转化成一个完整的可发布的静态网站，你可以发布在任何你喜爱的服务器上。Jekyll 也可以运行在 GitHub Page 上，也就是说，你可以使用 GitHub 的服务来搭建你的项目页面、博客或者网站，而且是<strong>完全免费</strong>的。</p>
@@ -72,7 +65,7 @@ github page是github提供的一种可以显示自己git库上网页的服务。
 
 <hr />
 
-<p>##使用jekyll在github上搭建个人博客</p>
+<h2 id="jekyllgithub">使用jekyll在github上搭建个人博客</h2>
 
 <p>github pages 支持jekyll，因此可以直接将源码上传到github pages上，会自动解释并生成网页。</p>
 
@@ -111,14 +104,14 @@ permalink: pretty  //生成路径的方法，不过好像不设置也没差别
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html</span> <span class="nt">&gt;</span>
 <span class="nt">&lt;head&gt;</span>
-	<span class="nt">&lt;title&gt;</span>jekyll usage<span class="nt">&lt;/title&gt;</span>
+	<span class="nt">&lt;title&gt;</span>{{page.title}}<span class="nt">&lt;/title&gt;</span>
        <span class="c">&lt;!--  调用page.title变量 --&gt;</span>
 <span class="nt">&lt;/head&gt;</span>
 
 <span class="nt">&lt;body&gt;</span>
 	<span class="nt">&lt;main</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
 		<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"wrapper"</span><span class="nt">&gt;</span>
-			{<span class="ni">&amp;#123;</span> content <span class="ni">&amp;#125;</span>}
+			{{ content }}
  <span class="c">&lt;!--  调用该模板的文件的主内容全部显示在content里 --&gt;</span>
 		<span class="nt">&lt;/div&gt;</span>
 	<span class="nt">&lt;/main&gt;</span>
@@ -173,38 +166,32 @@ title: Hello World
 ---
 
 <span class="nt">&lt;h1&gt;</span>hello world<span class="nt">&lt;/h1&gt;</span>
-
-  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/philoblog/dist/jekyll/2016/05/02/jekyll-usage/"</span><span class="nt">&gt;</span> jekyll usage<span class="nt">&lt;/a&gt;</span>
+{% for post in site.posts %}
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ site.baseurl }}{{ post.url }}"</span><span class="nt">&gt;</span> {{post.title}}<span class="nt">&lt;/a&gt;</span>
   注意site.baseurl 与 post.url中间没有 "/" ,因为post.url自带了"/"
   
-
-  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/philoblog/dist/jekyll/2016/04/29/mdtest/"</span><span class="nt">&gt;</span> markdown example<span class="nt">&lt;/a&gt;</span>
-  注意site.baseurl 与 post.url中间没有 "/" ,因为post.url自带了"/"
-  
-
-  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/philoblog/dist/test2/2016/04/25/test2/"</span><span class="nt">&gt;</span> test2<span class="nt">&lt;/a&gt;</span>
-  注意site.baseurl 与 post.url中间没有 "/" ,因为post.url自带了"/"
-  
-
-  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/philoblog/dist/test1/2016/04/25/test/"</span><span class="nt">&gt;</span> test1<span class="nt">&lt;/a&gt;</span>
-  注意site.baseurl 与 post.url中间没有 "/" ,因为post.url自带了"/"
-  
-
-  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/philoblog/dist/2015/04/25/pastday/"</span><span class="nt">&gt;</span> A year ago<span class="nt">&lt;/a&gt;</span>
-  注意site.baseurl 与 post.url中间没有 "/" ,因为post.url自带了"/"
-  
-
-  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/philoblog/dist/test2/2014/04/26/longtimeago/"</span><span class="nt">&gt;</span> Long time ago<span class="nt">&lt;/a&gt;</span>
-  注意site.baseurl 与 post.url中间没有 "/" ,因为post.url自带了"/"
-  
-
+{% endfor %}
 
 </code></pre>
 </div>
 
+<p><strong>6.语法高亮</strong></p>
+
+<p>想要引用的代码块语法高亮，要引用外部的资源</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"http://yandex.st/highlightjs/7.1/styles/default.min.css"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"http://yandex.st/highlightjs/7.1/highlight.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span><span class="nx">hljs</span><span class="p">.</span><span class="nx">initHighlightingOnLoad</span><span class="p">();</span><span class="nt">&lt;/script&gt;</span>
+</code></pre>
+</div>
+
+<p>这样就有语法高亮了，其实也可以根据生成后的DOM元素自己加CSS.</p>
+
+<p>例如<code class="highlighter-rouge">code { background: #f0f0f0 ;}</code></p>
+
 <hr />
 
-<p>##结束</p>
+<h2 id="section">结束</h2>
 
 <p>以上就是jekyll的简单用法，大家可以看看我创建的<a href="https://chenxxzhe.github.io/philoblog/dist">博客</a>，很简单的，一看就懂。</p>
 
