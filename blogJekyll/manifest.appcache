@@ -1,0 +1,14 @@
+CACHE MANIFEST
+# 2016-06-15 v1.0.0
+
+CACHE:
+http://yandex.st/highlightjs/7.1/styles/default.min.css
+http://yandex.st/highlightjs/7.1/highlight.min.js
+/assets/*.*
+/css/*.*
+/js/*.*
+
+NETWORK:
+
+
+FALLBACK:
