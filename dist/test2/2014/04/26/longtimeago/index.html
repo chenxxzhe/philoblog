@@ -3,13 +3,13 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta http-equiv="expires" content="Friday 15 July 2016 01:00 GMT" />
 	<title>Long time ago</title>
 	<!-- <link rel="icon" type="image/png" href="/philoblog/dist/assets/favicon.png" /> -->
 	<link rel="stylesheet" type="text/css" href="/philoblog/dist/css/default.css">
 
 	<link rel="stylesheet" href="http://yandex.st/highlightjs/7.1/styles/default.min.css">
-	<script src="http://yandex.st/highlightjs/7.1/highlight.min.js"></script>
-	<script>hljs.initHighlightingOnLoad();</script>
+	
 	<!-- 下面这段封装起来 -->
 	<style type="text/css">
 	code.highlighter-rouge {
@@ -101,7 +101,28 @@
 
 </aside> 
 <div id="mask"></div>
-<script src="/philoblog/dist/js/sidebar_menu.js"></script>
+<!-- <script src="/philoblog/dist/js/sidebar_menu.js"></script> -->
+<script>
+window.onload = function(){
+	var sidebar = document.getElementById("sidebar");
+	var menu_btn = document.getElementById("menu");
+	var mask = document.getElementById('mask');
 
+	menu_btn.onclick = function(){
+		sidebar.className = 'slide-in';
+		mask.style['display'] = "block";
+	}
+
+	mask.onclick = function(){
+		mask.style['display'] = 'none';
+		sidebar.className = "";
+	}
+}	
+</script>
+
+
+	<!-- highlight js -->
+	<script src="http://yandex.st/highlightjs/7.1/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>
